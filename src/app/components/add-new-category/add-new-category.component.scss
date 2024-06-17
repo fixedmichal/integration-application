@@ -1,0 +1,44 @@
+@import 'src/styles/variables.scss';
+
+.add-new-category {
+  background-color: $someblue;
+
+  &__close-button {
+    position: absolute;
+    top: 5%;
+    right: 0;
+    z-index: 999;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+
+  &__header {
+    font-size: 1rem;
+    padding-block: 1rem;
+  }
+
+  &__content {
+    //
+    &__form {
+      display: flex;
+      justify-content: flex-start;
+      align-items: stretch;
+      gap: 1rem;
+
+      &__cost-field {
+        width: 5rem;
+      }
+
+      &__percentage-field {
+        width: 5.5rem;
+      }
+
+      &__button {
+        height: 3.45rem;
+        padding-inline: 2rem;
+        margin-left: 1rem;
+        color: $blackish;
+      }
+    }
+  }
+}

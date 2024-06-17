@@ -1,0 +1,35 @@
+<mat-card class="add-new-category">
+  <mat-icon class="add-new-category__close-button" (click)="closeSection()">close</mat-icon>
+  <mat-card-header class="add-new-category__header">
+    Nowa Kategoria
+  </mat-card-header>
+  <mat-card-content class="add-new-category__content">
+
+    <form [formGroup]="form" class="add-new-category__content__form">
+
+      <mat-form-field floatLabel="always" class="add-new-category__content__form__name-field">
+        <mat-label>Nazwa</mat-label>
+        <input matInput formControlName="name" (keyup.enter)="!addButton.disabled ? onAddClick() : null" required>
+      </mat-form-field>
+
+
+      <mat-form-field floatLabel="always" class="add-new-category__content__form__percentage-field">
+        <mat-label>Procent</mat-label>
+        <input matInput disabled
+          [value]="{ integrationBudget, categoryCost: this.form.controls.cost.value! } | calculateBudgetsPercentage"
+          (keyup.enter)="!addButton.disabled ? onAddClick() : null">
+      </mat-form-field>
+
+      <mat-form-field floatLabel="always" class="add-new-category__content__form__cost-field">
+        <mat-label>Kwota</mat-label>
+        <input matInput formControlName="cost" required appOnlyNumericValues
+          (keyup.enter)="!addButton.disabled ? onAddClick() : null">
+      </mat-form-field>
+
+      <button class="add-new-category__content__form__button" mat-raised-button color="primary" #addButton
+        [disabled]="form.invalid" (click)="onAddClick()" (keyup.enter)="onAddClick()">Dodaj</button>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

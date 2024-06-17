@@ -1,0 +1,18 @@
+<div class="versions-list">
+  <a class="versions-list__button versions-list__button--left" (click)="scrollLeft()">
+    <mat-icon>arrow_left</mat-icon>
+  </a>
+
+  <ul class="versions-list__list" #ul>
+    @for(version of versions; track version.id) {
+    <li class="versions-list__list__item">
+      <a class="versions-list__list__item__anchor" (click)="selectVersion(version)"
+        [ngClass]="{'versions-list__list__item__anchor--selected': selectedVersionId === version.id}">{{version.name}}</a>
+    </li>
+    }
+  </ul>
+
+  <a class="versions-list__button versions-list__button--right" (click)="scrollRight()">
+    <mat-icon>arrow_right</mat-icon>
+  </a>
+</div>

@@ -1,0 +1,14 @@
+.version-name-dialog {
+  margin-inline: 0.5rem;
+
+  &__content {
+    margin-top: 0.5rem;
+
+    &__actions {
+      display: flex;
+      justify-content: flex-end;
+      padding: 0;
+      margin: 0;
+    }
+  }
+}

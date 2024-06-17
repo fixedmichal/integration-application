@@ -1,0 +1,27 @@
+@if(categoryItem) {
+<div class="budget-category-item">
+  @if(areRemoveButtonsDisplayed) {
+  <a class="budget-category-item__delete-button" (click)="onDeleteButtonClick(categoryItem)">
+    @if(deleteButtonClicked === null) {
+    <mat-icon aria-hidden="false" aria-label="Delete category item icon"
+      class="budget-category-item__delete-button__delete-icon">delete
+    </mat-icon>
+    }
+
+    @if(deleteButtonClicked || deleteButtonClicked === false) {
+    <mat-icon aria-hidden="false" aria-label="Delete category item icon"
+      class="budget-category-item__delete-button__check-icon">check
+    </mat-icon>
+    }
+  </a>
+  }
+
+  <span class="budget-category-item__name">
+    {{ categoryItem.name }}
+  </span>
+  <span class="budget-category-item__cost">
+    {{ categoryItem.cost + ' zł' }}
+  </span>
+
+</div>
+}

@@ -1,0 +1,7 @@
+<section class="update-integration-page">
+  @if(integrationId$ | async; as integrationId) {
+  <app-integration-editor [integrationId]="integrationId">
+    <app-integration-page-footer actionButtonText="Zapisz" (actionButtonClicked)="onUpdateClick()" />
+  </app-integration-editor>
+  }
+</section>

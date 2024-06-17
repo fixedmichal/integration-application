@@ -1,0 +1,304 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+@use '@angular/material/core/theming/_theming' as theming;
+
+@use '@angular/material/core/theming/palette' as palette;
+@use 'sass:map';
+@import 'src/styles/variables.scss';
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+
+///         RZEMIOSLO XD
+///
+///
+///
+///
+$dark-primary-text: rgba(black, 0.87);
+$light-primary-text: #fdf6ec;
+
+$blackish-palette: (
+  50: $blackish,
+  100: $blackish,
+  200: $blackish,
+  300: $blackish,
+  400: $blackish,
+  500: $blackish,
+  600: $blackish,
+  700: $blackish,
+  800: $blackish,
+  900: $blackish,
+  A100: $blackish,
+  A200: $blackish,
+  A400: $blackish,
+  A700: $blackish,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+$tekhelet-palette: (
+  50: $someblue,
+  100: $someblue,
+  200: $someblue,
+  300: $someblue,
+  400: $someblue,
+  500: #fdf6ec,
+  600: #fdf6ec,
+  700: #fdf6ec,
+  800: #fdf6ec,
+  900: #fdf6ec,
+  A100: #fdf6ec,
+  A200: #fdf6ec,
+  A400: #fdf6ec,
+  A700: #fdf6ec,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+
+$someblue-palette: (
+  50: $someblue,
+  100: $someblue,
+  200: $someblue,
+  300: $someblue,
+  400: $someblue,
+  500: $blackish,
+  600: $someblue,
+  700: $someblue,
+  800: $someblue,
+  900: $someblue,
+  A100: $someblue,
+  A200: $someblue,
+  A400: $someblue,
+  A700: $someblue,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $light-primary-text,
+    400: $light-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+    A100: $dark-primary-text,
+    A200: $light-primary-text,
+    A400: $light-primary-text,
+    A700: $light-primary-text,
+  ),
+);
+
+$dark-theme-background-palette: (
+  status-bar: $blackish,
+  app-bar: map.get(palette.$grey-palette, 900),
+  background: $blackish,
+  hover: rgba(white, 0.04),
+  card: $blackish,
+  dialog: $blackish,
+  disabled-button: rgba(white, 0.4),
+  raised-button: map.get(palette.$grey-palette, 800),
+  focused-button: palette.$light-focused,
+  selected-button: map.get(palette.$grey-palette, 900),
+  selected-disabled-button: map.get(palette.$grey-palette, 800),
+  disabled-button-toggle: black,
+  unselected-chip: map.get(palette.$grey-palette, 700),
+  disabled-list-option: rgba(white, 0.12),
+  tooltip: map.get(palette.$grey-palette, 700),
+);
+
+$dark-theme-foreground-palette: (
+  base: white,
+  divider: palette.$light-dividers,
+  dividers: palette.$light-dividers,
+  disabled: palette.$light-disabled-text,
+  disabled-button: rgba(white, 0.4),
+  disabled-text: palette.$light-disabled-text,
+  elevation: black,
+  hint-text: palette.$light-disabled-text,
+  secondary-text: palette.$light-secondary-text,
+  icon: white,
+  icons: white,
+  text: $champagne,
+  slider-min: white,
+  slider-off: rgba(white, 0.3),
+  slider-off-active: rgba(white, 0.3),
+);
+
+@function create-dark-color-config($primary, $accent, $warn: null) {
+  @return (
+    primary: $primary,
+    accent: $accent,
+    warn: if($warn != null, $warn, define-palette(palette.$red-palette)),
+    is-dark: true,
+    foreground: $dark-theme-foreground-palette,
+    background: $dark-theme-background-palette
+  );
+}
+
+$_internals: _mat-theming-internals-do-not-access;
+$theme-legacy-inspection-api-compatibility: true !default;
+
+@function _internalize-theme($theme) {
+  @if map.has-key($theme, $_internals) {
+    @return $theme;
+  }
+  $internalized-theme: (
+    $_internals: (
+      theme-version: 0,
+      m2-config: $theme,
+    ),
+  );
+  @if ($theme-legacy-inspection-api-compatibility) {
+    @return map.merge($theme, $internalized-theme);
+  }
+  $error-theme: _replace-values-with-errors($theme, 'Theme may only be accessed via theme inspection API');
+  @return map.merge($error-theme, $internalized-theme);
+}
+
+@function _mat-validate-theme($theme) {
+  @if map.get($theme, color) {
+    $color: map.get($theme, color);
+    @if not map.get($color, primary) {
+      @error 'Theme does not define a valid "primary" palette.';
+    } @else if not map.get($color, accent) {
+      @error 'Theme does not define a valid "accent" palette.';
+    } @else if not map.get($color, warn) {
+      @error 'Theme does not define a valid "warn" palette.';
+    }
+  }
+  @return $theme;
+}
+
+@function define-dark-theme($primary, $accent: null, $warn: mat.define-palette(palette.$red-palette)) {
+  // This function creates a container object for the individual component theme mixins. Consumers
+  // can construct such an object by calling this function, or by building the object manually.
+  // There are two possible ways to invoke this function in order to create such an object:
+  //
+  //    (1) Passing in a map that holds optional configurations for individual parts of the
+  //        theming system. For `color` configurations, the function only expects the palettes
+  //        for `primary` and `accent` (and optionally `warn`). The function will expand the
+  //        shorthand into an actual configuration that can be consumed in `-color` mixins.
+  //    (2) Legacy pattern: Passing in the palettes as parameters. This is not as flexible
+  //        as passing in a configuration map because only the `color` system can be configured.
+  //
+  // If the legacy pattern is used, we generate a container object only with a dark-themed
+  // configuration for the `color` theming part.
+  @if $accent != null {
+    @warn $_legacy-theme-warning;
+    @return _internalize-theme(
+      private-create-backwards-compatibility-theme(
+        _mat-validate-theme(
+          (
+            _is-legacy-theme: true,
+            color: create-dark-color-config($primary, $accent, $warn),
+          )
+        )
+      )
+    );
+  }
+  // If the map pattern is used (1), we just pass-through the configurations for individual
+  // parts of the theming system, but update the `color` configuration if set. As explained
+  // above, the color shorthand will be expanded to an actual dark-themed color configuration.
+  $result: $primary;
+  @if map.get($primary, color) {
+    $color-settings: map.get($primary, color);
+    $primary: map.get($color-settings, primary);
+    $accent: map.get($color-settings, accent);
+    $warn: map.get($color-settings, warn);
+    $result: map.merge(
+      $result,
+      (
+        color: create-dark-color-config($primary, $accent, $warn),
+      )
+    );
+  }
+  @return _internalize-theme(theming.private-create-backwards-compatibility-theme(_mat-validate-theme($result)));
+}
+
+$the-team-project-primary: mat.define-palette($tekhelet-palette);
+$the-team-project-accent: mat.define-palette($someblue-palette, 700, 700, 500);
+
+// The warn palette is optional (defaults to red).
+$the-team-project-warn: mat.define-palette(mat.$red-palette);
+
+$my-dark-theme: define-dark-theme(
+  (
+    color: (
+      primary: $the-team-project-primary,
+      accent: $the-team-project-accent,
+      warn: $the-team-project-warn,
+    ),
+    typography: mat.define-typography-config(),
+    density: 0,
+  )
+);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($my-dark-theme);
+
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: #fae3c6;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}

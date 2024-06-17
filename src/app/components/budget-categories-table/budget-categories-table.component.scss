@@ -1,0 +1,108 @@
+@import 'src/styles/variables.scss';
+
+.container {
+  max-height: 44vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+
+  &--shorter {
+    max-height: 36vh;
+  }
+
+  &--height-extended {
+    max-height: 50vh;
+  }
+}
+
+.add-icon {
+  color: $someblue;
+}
+
+.budget-categories-table {
+  //
+  &__expanded-row {
+    position: relative;
+    display: flex;
+    padding-left: 4rem;
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &--no-padding {
+      padding-left: 0rem;
+    }
+  }
+
+  &__expand-header {
+    width: 1rem;
+  }
+
+  &__add-header {
+    width: 1rem;
+    padding: 0;
+  }
+
+  &__delete-column {
+    width: 4rem;
+
+    &__anchor {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+      z-index: 99999999;
+      color: $someblue;
+
+      cursor: pointer;
+      transition: 0.3s;
+
+      &:hover {
+        transform: scale(1.15);
+      }
+
+      &:active {
+        transform: scale(0.95);
+      }
+    }
+  }
+
+  &__cost-header {
+    width: 8rem;
+  }
+
+  &__percentage-header {
+    width: 3rem;
+  }
+}
+
+.align-right {
+  text-align: right;
+}
+
+table {
+  width: 100%;
+}
+
+tr.example-detail-row {
+  height: 0;
+}
+
+tr.example-element-row {
+  font-size: 0.9rem;
+}
+
+tr.example-element-row:not(.example-expanded-row):hover {
+  background: $champagne;
+  color: $blackish;
+}
+
+tr.example-element-row:not(.example-expanded-row):active {
+  background: #efefef;
+}
+
+.no-padding {
+  padding: 0;
+}
