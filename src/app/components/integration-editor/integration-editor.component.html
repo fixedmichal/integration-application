@@ -1,0 +1,16 @@
+@if(integration$ | async; as integration ) {
+<div class="integration-editor-container">
+  <main class="integration-editor">
+    <section class="integration-editor__budget-and-categories">
+      <app-budget-primary-details-form [integration]="integration" />
+      <div class="integration-editor__budget-and-categories__categories">
+        <app-budget-categories [integration]="integration" [viewConfig]="budgetCategoriesViewConfig" />
+      </div>
+    </section>
+    <section class="integration-editor__image-and-name">
+      <app-integration-image-and-name [integration]="integration" (dataChanged)="onNameAndImageDataChanged($event)" />
+    </section>
+  </main>
+  <ng-content></ng-content>
+</div>
+}

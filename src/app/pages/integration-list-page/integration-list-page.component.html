@@ -1,0 +1,11 @@
+<div class="integration-list-page">
+  <h2 class="integration-list-page__header">Wybierz edycję integracji</h2>
+  <div class="integration-list-page__content">
+    <app-integration-tile *ngFor="let integration of integrations" [integration]="integration"
+      routerLink="update/{{integration.id}}" />
+    <button class="integration-list-page__content__add-button" routerLink="create">
+      <mat-icon class="integration-list-page__content__add-button__icon">add</mat-icon>
+    </button>
+  </div>
+
+</div>

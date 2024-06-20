@@ -1,0 +1,47 @@
+@use '@angular/material' as mat;
+@import 'src/styles/variables.scss';
+
+.add-new-category-item {
+  padding-top: 2rem;
+
+  &__content {
+    height: 100%;
+    //
+    &__form {
+      @include mat.form-field-density(-3);
+
+      height: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      align-items: baseline;
+      column-gap: 1rem;
+      row-gap: 0.25rem;
+      margin-bottom: 1rem;
+
+      &__cost-input {
+        width: 5rem;
+      }
+
+      &__per-participant-input {
+        // doesn't work ;/
+        @include mat.checkbox-density(-2);
+
+        margin-right: 1rem;
+      }
+
+      &__button {
+        padding-inline: 1rem;
+        color: $blackish;
+      }
+
+      &__close-button {
+        font-size: 1rem;
+        cursor: pointer;
+
+        & > * {
+        }
+      }
+    }
+  }
+}

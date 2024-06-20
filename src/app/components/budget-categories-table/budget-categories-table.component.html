@@ -1,0 +1,83 @@
+<div class="container" tabindex="0" #container
+  [ngClass]="{'container--shorter': isAddNewCategorySectionOpen, 'container--height-extended': viewConfig.isTableHeightExtended }">
+  <table mat-table [dataSource]="dataSource" multiTemplateDataRows class="budget-categories-table">
+
+    <ng-container matColumnDef="delete" [sticky]="true">
+      <th mat-header-cell *matHeaderCellDef class="budget-categories-table__delete-column"></th>
+      <td mat-cell *matCellDef="let row; let i = dataIndex">
+        <a class="budget-categories-table__delete-column__anchor"
+          (click)="onDeleteCategoryClick(i)"><mat-icon>delete</mat-icon></a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kategoria">
+      <th mat-header-cell *matHeaderCellDef><b>Kategoria</b></th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kwota">
+      <th mat-header-cell *matHeaderCellDef class="budget-categories-table__cost-header align-right"><b>Kwota</b></th>
+      <td mat-cell *matCellDef="let element" class="align-right"> {{element.cost + ' zł'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="procent">
+      <th mat-header-cell *matHeaderCellDef class="budget-categories-table__percentage-header align-right">
+        <b>Procent</b>
+      </th>
+      <td mat-cell *matCellDef="let element" class="align-right"> {{ { integrationBudget, categoryCost: element.cost } |
+        calculateBudgetsPercentage }} </td>
+    </ng-container>
+
+    @if(viewConfig.isAddButtonsColumnDisplayed) {
+    <ng-container matColumnDef="add">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions" class="budget-categories-table__add-header">
+        &nbsp;</th>
+      <td mat-cell *matCellDef="let element" class="align-right no-padding">
+        <button mat-icon-button aria-label="expand row"
+          (click)="(expandedElement = element); $event.stopPropagation(); showAddCategoryItemSection(element.id)">
+          <mat-icon class="add-icon">add_circle</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    }
+
+    <ng-container matColumnDef="expand">
+      <th mat-header-cell *matHeaderCellDef aria-label="row actions" class="budget-categories-table__expand-header">
+        &nbsp;</th>
+      <td mat-cell *matCellDef="let element" class="align-right">
+        <button mat-icon-button aria-label="expand row"
+          (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+          @if (expandedElement === element) {
+          <mat-icon>keyboard_arrow_up</mat-icon>
+          } @else {
+          <mat-icon>keyboard_arrow_down</mat-icon>
+          }
+        </button>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let element; let i = dataIndex" [attr.colspan]="viewConfig.tableColspan">
+        <div class="budget-categories-table__expanded-row"
+          [ngClass]="{'budget-categories-table__expanded-row--no-padding': !viewConfig.isTableExpandedRowWithPadding}"
+          [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+          <div class="budget-categories-table__expanded-row__container">
+            @if(expandedRowCategoryId && expandedRowCategoryId === element.id) {
+            <app-add-new-category-item [categoryId]="budgetCategories[i].id!" [versionId]="versionId"
+              (addedCategoryItem)="onAddedCategoryItem($event)" (close)="closeAddCategoryItemSection()" />
+            }
+            <app-budget-category-items [categoryItems]="element.items"
+              [areRemoveButtonsDisplayed]="viewConfig.areCategoryItemsRemoveButtonsDisplayed" />
+          </div>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+    <tr mat-row *matRowDef="let element; columns: columnsToDisplay;" class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+    </tr>
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+  </table>
+</div>

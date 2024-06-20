@@ -1,0 +1,42 @@
+@import 'src/styles/variables.scss';
+
+.budget-category-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+  font-weight: 500;
+  padding: 0;
+  margin: 0;
+
+  &__cost {
+    margin-left: auto;
+  }
+
+  &__delete-button {
+    cursor: pointer;
+    background: unset;
+    border: unset;
+    padding: none;
+
+    &__delete-icon {
+      font-size: 1rem;
+      display: flex;
+      height: auto;
+      width: auto;
+      color: $someblue;
+    }
+
+    &__check-icon {
+      font-size: 1rem;
+      display: flex;
+      height: auto;
+      width: auto;
+      color: $someblue;
+    }
+
+    & > * {
+      height: auto;
+    }
+  }
+}

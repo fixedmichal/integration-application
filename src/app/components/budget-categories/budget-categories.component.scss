@@ -1,0 +1,52 @@
+:host {
+  flex-grow: 1;
+}
+
+.budget-categories {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  color: #fae3c6;
+  min-width: 38vw;
+
+  &__top {
+    &__header {
+      margin: 1rem 0 1rem 1rem;
+      font-size: 1.25rem;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      padding-inline: 1rem;
+    }
+  }
+
+  &__bottom {
+    padding-inline: 1rem;
+    padding-bottom: 1.25rem;
+
+    &__add-button {
+      display: flex;
+      align-items: center;
+      font-size: inherit;
+      font-weight: bold;
+      margin-top: 1rem;
+
+      &__icon {
+        width: auto;
+        height: auto;
+        font-size: 1.5rem;
+      }
+
+      &__text {
+        color: #fae3c6;
+        font-size: 1rem;
+        letter-spacing: normal;
+      }
+    }
+  }
+}
