@@ -1,6 +1,0 @@
-<ul class="budget-category-items">
-  <li *ngFor="let item of categoryItems" class="budget-category-items__item">
-    <app-budget-category-item [categoryItem]="item!" [areRemoveButtonsDisplayed]="areRemoveButtonsDisplayed"
-      (deleteCategoryItem)="onDeleteButtonClick($event)" />
-  </li>
-</ul>
