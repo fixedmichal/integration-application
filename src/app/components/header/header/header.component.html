@@ -1,9 +1,0 @@
-<mat-toolbar class="header">
-  <div class="header__logo">
-    <img class="header__logo__image" src="/assets/images/logo.png">
-  </div>
-  @if(currentIntegrationName$ | async; as currentIntegrationName) {
-  <h2 class="header__integration-name"> {{ currentIntegrationName}}</h2>
-  }
-  <a routerLink="/"><img src="assets/images/go_home_icon.svg" class="header__go-home" alt=""></a>
-</mat-toolbar>
